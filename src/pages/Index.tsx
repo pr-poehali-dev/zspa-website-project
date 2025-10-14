@@ -908,6 +908,31 @@ const Index = () => {
               </Card>
             </div>
           </div>
+
+          <div className="mt-12">
+            <Card className="overflow-hidden">
+              <div className="aspect-video w-full">
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A7b8f2c8e8f9e8f8f8f8f8f8f8f8f8f8f&amp;source=constructor"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  style={{ minHeight: '400px' }}
+                  title="Карта офиса ООО ЗСПА"
+                  className="border-0"
+                ></iframe>
+              </div>
+              <CardContent className="p-6 bg-white">
+                <div className="flex items-center gap-3">
+                  <Icon name="MapPin" className="h-6 w-6 text-[#0066CC]" />
+                  <div>
+                    <h4 className="font-semibold mb-1">Адрес офиса</h4>
+                    <p className="text-muted-foreground">115093, г. Москва, ул. Промышленная, д. 25, стр. 1</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
