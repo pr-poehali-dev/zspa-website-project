@@ -797,7 +797,7 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Контакты</h4>
               <div className="space-y-2 text-sm text-white/80">
-                <p>+7 (495) 123-45-67</p>
+                <p>+7 (495) 877-37-83</p>
                 <p>zakaz2@elbows.ru</p>
                 <p>Московская область
 г. Щелково, ул. Советская 1/2, к2</p>
