@@ -14,6 +14,8 @@ const Index = () => {
   const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [catalogOpen, setCatalogOpen] = useState(false);
+  const [sortBy, setSortBy] = useState<'price-asc' | 'price-desc' | 'popular' | 'newest'>('popular');
+  const [favorites, setFavorites] = useState<number[]>([]);
 
   const catalogCategories = [
     {
@@ -26,48 +28,13 @@ const Index = () => {
         { id: 'transitions', label: 'Переходы' },
         { id: 'tees', label: 'Тройники' },
         { id: 'plugs', label: 'Заглушки' },
-        { id: 'press-flanges', label: 'Фланцы прижимные для ПЭ труб' },
-        { id: 'spigot-sleeves', label: 'Втулки «спигот» под фланцы прижимные' }
+        { id: 'valves', label: 'Задвижки' },
+        { id: 'dampers', label: 'Затворы' },
+        { id: 'ball-valves', label: 'Краны шаровые' },
+        { id: 'check-valves', label: 'Клапаны запорные' },
+        { id: 'threaded-fittings', label: 'Фитинги резьбовые' },
+        { id: 'fasteners', label: 'Крепеж' }
       ]
-    },
-    {
-      id: 'valves',
-      label: 'Задвижки',
-      icon: 'Gauge',
-      subcategories: []
-    },
-    {
-      id: 'dampers',
-      label: 'Затворы',
-      icon: 'Disc',
-      subcategories: []
-    },
-    {
-      id: 'ball-valves',
-      label: 'Краны шаровые',
-      icon: 'Circle',
-      subcategories: [
-        { id: 'steel-ball-valves', label: 'Краны шаровые стальные' },
-        { id: 'brass-ball-valves', label: 'Краны шаровые латунные' }
-      ]
-    },
-    {
-      id: 'check-valves',
-      label: 'Клапаны запорные',
-      icon: 'CircleDot',
-      subcategories: []
-    },
-    {
-      id: 'threaded-fittings',
-      label: 'Фитинги резьбовые',
-      icon: 'Wrench',
-      subcategories: []
-    },
-    {
-      id: 'fasteners',
-      label: 'Крепеж',
-      icon: 'Bolt',
-      subcategories: []
     }
   ];
 
@@ -537,112 +504,243 @@ const Index = () => {
 
       <section id="products" className="py-8 bg-muted/30">
         <div className="container">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">
-              {activeSubcategory 
-                ? catalogCategories
-                    .find(c => c.id === activeCategory)?.subcategories
-                    .find(s => s.id === activeSubcategory)?.label
-                : activeCategory
-                  ? catalogCategories.find(c => c.id === activeCategory)?.label
-                  : 'Каталог продукции'}
-            </h1>
-            <div className="text-sm text-muted-foreground">
-              Главная » Продукция »
-              {activeCategory && (
-                <span> {catalogCategories.find(c => c.id === activeCategory)?.label}</span>
-              )}
-              {activeSubcategory && (
-                <span> » {catalogCategories
-                  .find(c => c.id === activeCategory)?.subcategories
-                  .find(s => s.id === activeSubcategory)?.label}</span>
-              )}
-            </div>
-          </div>
-
-          {activeSubcategory === 'elbows' && (
-            <div className="mb-6">
-              <Button variant="outline" size="sm" className="mb-4">
-                <Icon name="SlidersHorizontal" className="mr-2 h-4 w-4" />
-                Фильтр
-              </Button>
-              <div className="flex flex-wrap gap-2">
-                {filterOptions.map((filter) => (
-                  <Button
-                    key={filter.id}
-                    variant={selectedFilters.includes(filter.id) ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => toggleFilter(filter.id)}
-                    className="text-xs"
-                  >
-                    {filter.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="mb-4 flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
-              Всего наименований: <strong>{totalProducts}</strong>
-            </p>
-            <p className="text-xs text-green-600 font-medium">
-              Прайс-лист обновлен 14.10.2025
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h2 className="text-4xl font-bold mb-4">Каталог продукции</h2>
+            <p className="text-xl text-muted-foreground">
+              Широкий ассортимент деталей трубопровода от производителя
             </p>
           </div>
 
-          {totalProducts === 0 ? (
-            <Card className="p-12 text-center">
-              <Icon name="Package" className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-              <h3 className="text-xl font-semibold mb-2">Товары не найдены</h3>
-              <p className="text-muted-foreground mb-4">Попробуйте изменить фильтры или выбрать другую категорию</p>
-              <Button onClick={() => { setActiveCategory(null); setActiveSubcategory(null); setSelectedFilters([]); }}>
-                Сбросить фильтры
-              </Button>
-            </Card>
-          ) : (
-            <div className="space-y-3">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="hover:shadow-md transition-shadow">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-24 h-24 flex-shrink-0 bg-muted rounded overflow-hidden">
-                        <img 
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-muted-foreground mb-1">{product.article}</p>
-                        <h3 className="font-semibold mb-2 hover:text-[#0066CC] cursor-pointer">{product.name}</h3>
-                        <div className="flex items-center gap-4">
-                          <div>
-                            <p className="text-2xl font-bold text-[#0066CC]">{product.price.toFixed(2)} {product.priceUnit}</p>
-                          </div>
-                          {product.inStock && (
-                            <Badge variant="secondary" className="bg-green-100 text-green-700 hover:bg-green-100">
-                              в наличии
-                            </Badge>
-                          )}
+          <div className="grid lg:grid-cols-[280px_1fr] gap-6">
+            <div className="space-y-4">
+              <Card className="p-4 sticky top-4">
+                <h3 className="font-semibold mb-4 flex items-center gap-2">
+                  <Icon name="LayoutList" className="h-5 w-5 text-[#0066CC]" />
+                  Категории товаров
+                </h3>
+                <nav className="space-y-1">
+                  {catalogCategories.map((category) => (
+                    <Collapsible key={category.id} defaultOpen={category.id === 'pipeline-parts'}>
+                      <CollapsibleTrigger
+                        className="flex items-center justify-between w-full p-3 hover:bg-muted rounded-lg transition-colors"
+                        onClick={() => {
+                          if (category.subcategories.length === 0) {
+                            setActiveCategory(category.id);
+                            setActiveSubcategory(null);
+                          }
+                        }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Icon name={category.icon as any} className="h-4 w-4 text-[#0066CC]" />
+                          <span className="text-sm font-medium">{category.label}</span>
                         </div>
-                      </div>
-                      <div className="flex-shrink-0">
-                        <Button size="lg" className="bg-[#0066CC] hover:bg-[#0052A3]">
-                          <Icon name="ShoppingCart" className="h-5 w-5" />
+                        {category.subcategories.length > 0 && (
+                          <Icon name="ChevronDown" className="h-4 w-4" />
+                        )}
+                      </CollapsibleTrigger>
+                      {category.subcategories.length > 0 && (
+                        <CollapsibleContent className="pl-6 pt-1 space-y-1">
+                          {category.subcategories.map((sub) => (
+                            <button
+                              key={sub.id}
+                              onClick={() => {
+                                setActiveCategory(category.id);
+                                setActiveSubcategory(sub.id);
+                              }}
+                              className={`block w-full text-left p-2 text-sm rounded hover:bg-muted transition-colors ${
+                                activeSubcategory === sub.id ? 'bg-[#0066CC]/10 text-[#0066CC] font-medium' : ''
+                              }`}
+                            >
+                              {sub.label}
+                            </button>
+                          ))}
+                        </CollapsibleContent>
+                      )}
+                    </Collapsible>
+                  ))}
+                </nav>
+              </Card>
+            </div>
+
+            <div>
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h1 className="text-2xl font-bold mb-1">
+                      {activeSubcategory 
+                        ? catalogCategories
+                            .find(c => c.id === activeCategory)?.subcategories
+                            .find(s => s.id === activeSubcategory)?.label
+                        : activeCategory
+                          ? catalogCategories.find(c => c.id === activeCategory)?.label
+                          : 'Все товары'}
+                    </h1>
+                    <div className="text-sm text-muted-foreground">
+                      Главная / Продукция
+                      {activeCategory && (
+                        <span> / {catalogCategories.find(c => c.id === activeCategory)?.label}</span>
+                      )}
+                      {activeSubcategory && (
+                        <span> / {catalogCategories
+                          .find(c => c.id === activeCategory)?.subcategories
+                          .find(s => s.id === activeSubcategory)?.label}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">Сортировка:</span>
+                    <select 
+                      className="text-sm border rounded-md px-3 py-1.5"
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as any)}
+                    >
+                      <option value="popular">По популярности</option>
+                      <option value="price-asc">Цена: по возрастанию</option>
+                      <option value="price-desc">Цена: по убыванию</option>
+                      <option value="newest">Новинки</option>
+                    </select>
+                  </div>
+                </div>
+
+                {activeSubcategory === 'elbows' && (
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon name="SlidersHorizontal" className="h-4 w-4 text-[#0066CC]" />
+                      <span className="text-sm font-semibold">Фильтры:</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {filterOptions.map((filter) => (
+                        <Button
+                          key={filter.id}
+                          variant={selectedFilters.includes(filter.id) ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => toggleFilter(filter.id)}
+                          className="text-xs"
+                        >
+                          {filter.label}
+                          {selectedFilters.includes(filter.id) && (
+                            <Icon name="X" className="ml-1 h-3 w-3" />
+                          )}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-sm text-muted-foreground">
+                  Найдено товаров: <strong>{totalProducts}</strong>
+                </p>
+                <Badge variant="outline" className="text-green-600 border-green-600">
+                  Прайс обновлен 14.10.2025
+                </Badge>
+              </div>
+
+              {totalProducts === 0 ? (
+                <Card className="p-12 text-center">
+                  <Icon name="Package" className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+                  <h3 className="text-xl font-semibold mb-2">Товары не найдены</h3>
+                  <p className="text-muted-foreground mb-4">Попробуйте изменить фильтры или выбрать другую категорию</p>
+                  <Button onClick={() => { setActiveCategory(null); setActiveSubcategory(null); setSelectedFilters([]); }}>
+                    Сбросить фильтры
+                  </Button>
+                </Card>
+              ) : (
+                <div className="space-y-3">
+                  {filteredProducts.map((product) => (
+                    <Card key={product.id} className="hover:shadow-lg transition-shadow">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-28 h-28 flex-shrink-0 bg-white rounded border overflow-hidden">
+                            <img 
+                              src={product.image}
+                              alt={product.name}
+                              className="w-full h-full object-cover hover:scale-110 transition-transform cursor-pointer"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between mb-1">
+                              <p className="text-xs text-muted-foreground">Артикул: {product.article}</p>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8"
+                                onClick={() => {
+                                  if (favorites.includes(product.id)) {
+                                    setFavorites(favorites.filter(id => id !== product.id));
+                                  } else {
+                                    setFavorites([...favorites, product.id]);
+                                  }
+                                }}
+                              >
+                                <Icon 
+                                  name="Heart" 
+                                  className={`h-4 w-4 ${favorites.includes(product.id) ? 'fill-red-500 text-red-500' : ''}`}
+                                />
+                              </Button>
+                            </div>
+                            <h3 className="font-semibold mb-2 hover:text-[#0066CC] cursor-pointer text-lg">
+                              {product.name}
+                            </h3>
+                            <div className="flex items-center gap-3 mb-2">
+                              <div>
+                                <p className="text-2xl font-bold text-[#0066CC]">
+                                  {product.price.toFixed(2)} <span className="text-sm font-normal">{product.priceUnit}</span>
+                                </p>
+                              </div>
+                              {product.inStock ? (
+                                <Badge variant="secondary" className="bg-green-100 text-green-700 hover:bg-green-100">
+                                  <Icon name="CheckCircle2" className="h-3 w-3 mr-1" />
+                                  В наличии
+                                </Badge>
+                              ) : (
+                                <Badge variant="secondary" className="bg-orange-100 text-orange-700">
+                                  Под заказ
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex-shrink-0 flex flex-col gap-2">
+                            <Button size="lg" className="bg-[#0066CC] hover:bg-[#0052A3]">
+                              <Icon name="ShoppingCart" className="mr-2 h-5 w-5" />
+                              В корзину
+                            </Button>
+                            <Button size="lg" variant="outline">
+                              Запросить цену
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-8">
+                <Card className="p-6 bg-gradient-to-r from-[#0066CC]/5 to-transparent border-l-4 border-l-[#0066CC]">
+                  <div className="flex items-start gap-4">
+                    <Icon name="Info" className="h-6 w-6 text-[#0066CC] flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Не нашли нужный товар?</h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Цены и сроки поставки на заказной товар уточняйте у вашего менеджера. Мы работаем с индивидуальными заказами.
+                      </p>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm">
+                          <Icon name="Phone" className="mr-2 h-4 w-4" />
+                          Позвонить
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Icon name="Mail" className="mr-2 h-4 w-4" />
+                          Написать
                         </Button>
                       </div>
                     </div>
-                  </CardContent>
+                  </div>
                 </Card>
-              ))}
+              </div>
             </div>
-          )}
-
-          <div className="mt-8 text-center">
-            <Card className="inline-block p-6 bg-gray-50">
-              <p className="text-sm font-semibold mb-2">Цены и сроки поставки на заказной товар уточняйте у Вашего менеджера.</p>
-            </Card>
           </div>
         </div>
       </section>
