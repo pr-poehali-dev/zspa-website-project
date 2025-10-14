@@ -398,7 +398,6 @@ const Index = () => {
             <a href="#home" className="text-sm hover:text-white/80 transition-colors">Главная</a>
             <a href="#about" className="text-sm hover:text-white/80 transition-colors">О компании</a>
             <a href="#products" className="text-sm hover:text-white/80 transition-colors">Продукция</a>
-            <a href="#services" className="text-sm hover:text-white/80 transition-colors">Услуги</a>
             <a href="#projects" className="text-sm hover:text-white/80 transition-colors">Проекты</a>
             <a href="#news" className="text-sm hover:text-white/80 transition-colors">Новости</a>
             <a href="#contacts" className="text-sm hover:text-white/80 transition-colors">Контакты</a>
@@ -645,48 +644,6 @@ const Index = () => {
           <div className="mt-8 text-center">
             <Card className="inline-block p-6 bg-gray-50">
               <p className="text-sm font-semibold mb-2">Цены и сроки поставки на заказной товар уточняйте у Вашего менеджера.</p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="py-20">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Наши услуги</h2>
-            <p className="text-xl text-muted-foreground">
-              Полный цикл обслуживания от консультации до постпродажной поддержки
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <Icon name="Truck" className="h-12 w-12 text-[#0066CC] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Доставка</h3>
-              <p className="text-sm text-muted-foreground">
-                Быстрая доставка по всей России собственным транспортом
-              </p>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <Icon name="Wrench" className="h-12 w-12 text-[#0066CC] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Монтаж</h3>
-              <p className="text-sm text-muted-foreground">
-                Профессиональный монтаж оборудования на объекте заказчика
-              </p>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <Icon name="MessageCircle" className="h-12 w-12 text-[#0066CC] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Консультации</h3>
-              <p className="text-sm text-muted-foreground">
-                Техническое консультирование и подбор оптимальных решений
-              </p>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <Icon name="Shield" className="h-12 w-12 text-[#0066CC] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Гарантия</h3>
-              <p className="text-sm text-muted-foreground">
-                Расширенная гарантия и постпродажное обслуживание
-              </p>
             </Card>
           </div>
         </div>
