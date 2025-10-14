@@ -398,8 +398,6 @@ const Index = () => {
             <a href="#home" className="text-sm hover:text-white/80 transition-colors">Главная</a>
             <a href="#about" className="text-sm hover:text-white/80 transition-colors">О компании</a>
             <a href="#products" className="text-sm hover:text-white/80 transition-colors">Продукция</a>
-            <a href="#projects" className="text-sm hover:text-white/80 transition-colors">Проекты</a>
-            <a href="#news" className="text-sm hover:text-white/80 transition-colors">Новости</a>
             <a href="#contacts" className="text-sm hover:text-white/80 transition-colors">Контакты</a>
           </div>
           <div className="flex items-center gap-4">
@@ -649,131 +647,6 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="projects" className="py-20 bg-muted/30">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Реализованные проекты</h2>
-            <p className="text-xl text-muted-foreground">
-              Мы гордимся доверием крупнейших промышленных предприятий
-            </p>
-          </div>
-
-          <Tabs defaultValue="projects" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
-              <TabsTrigger value="projects">Проекты</TabsTrigger>
-              <TabsTrigger value="reviews">Отзывы</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="projects" className="space-y-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                {projects.map((project) => (
-                  <Card key={project.id} className="p-6 hover:shadow-lg transition-shadow">
-                    <div className="flex items-start justify-between mb-4">
-                      <Icon name="Building2" className="h-10 w-10 text-[#0066CC]" />
-                      <Badge>Завершен</Badge>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground mb-3">{project.description}</p>
-                    <p className="text-sm font-medium text-[#0066CC]">{project.client}</p>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="reviews" className="space-y-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                {reviews.map((review) => (
-                  <Card key={review.id} className="p-6">
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Icon key={i} name="Star" className="h-5 w-5 fill-[#FF6B35] text-[#FF6B35]" />
-                      ))}
-                    </div>
-                    <p className="text-muted-foreground mb-4 italic">"{review.text}"</p>
-                    <div className="border-t pt-4">
-                      <p className="font-semibold">{review.author}</p>
-                      <p className="text-sm text-muted-foreground">{review.company}</p>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      <section id="news" className="py-20">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Новости компании</h2>
-            <p className="text-xl text-muted-foreground">
-              Будьте в курсе последних событий и новинок
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-muted">
-                <img 
-                  src="https://cdn.poehali.dev/projects/fea1ecb1-7733-485b-9aa2-0032f4476c6a/files/98b65c63-fd02-4fd9-96af-f4a3490a9ed6.jpg"
-                  alt="Новость"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <Badge className="mb-3">14.10.2025</Badge>
-                <h3 className="text-xl font-semibold mb-2">Новая линия производства запущена</h3>
-                <p className="text-muted-foreground">
-                  Расширение производственных мощностей позволит увеличить объемы выпуска продукции на 40%
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-muted">
-                <img 
-                  src="https://cdn.poehali.dev/projects/fea1ecb1-7733-485b-9aa2-0032f4476c6a/files/8164dacd-ef84-4cac-b4c9-866140ab5ab0.jpg"
-                  alt="Новость"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <Badge className="mb-3">10.10.2025</Badge>
-                <h3 className="text-xl font-semibold mb-2">Получен сертификат ISO 9001</h3>
-                <p className="text-muted-foreground">
-                  Подтверждение соответствия международным стандартам качества
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-muted">
-                <img 
-                  src="https://cdn.poehali.dev/projects/fea1ecb1-7733-485b-9aa2-0032f4476c6a/files/f7d4c966-a7b5-40d3-bef4-a14aff349640.jpg"
-                  alt="Новость"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <Badge className="mb-3">05.10.2025</Badge>
-                <h3 className="text-xl font-semibold mb-2">Участие в выставке "Нефтегаз-2025"</h3>
-                <p className="text-muted-foreground">
-                  Презентация новых разработок на крупнейшей отраслевой выставке
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="max-w-md mx-auto p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">Подпишитесь на новости</h3>
-            <div className="flex gap-2">
-              <Input placeholder="Ваш email" type="email" />
-              <Button>
-                <Icon name="Mail" className="h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       <section id="contacts" className="py-20 bg-muted/30">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-12">
@@ -819,7 +692,7 @@ const Index = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Адрес</h4>
                     <p className="text-muted-foreground">
-                      115093, г. Москва, ул. Промышленная, д. 25, стр. 1
+                      Московская область, г. Щелково, ул. Советская 1/2, к2
                     </p>
                   </div>
                 </div>
@@ -832,8 +705,7 @@ const Index = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Телефон</h4>
-                    <p className="text-muted-foreground">+7 (495) 123-45-67</p>
-                    <p className="text-muted-foreground">+7 (800) 555-00-00 (бесплатно)</p>
+                    <p className="text-muted-foreground">+7 (495) 877-37-83</p>
                   </div>
                 </div>
               </Card>
@@ -845,8 +717,7 @@ const Index = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-muted-foreground">info@zspa.ru</p>
-                    <p className="text-muted-foreground">sales@zspa.ru</p>
+                    <p className="text-muted-foreground">zakaz2@elbows.ru</p>
                   </div>
                 </div>
               </Card>
@@ -884,7 +755,7 @@ const Index = () => {
                   <Icon name="MapPin" className="h-6 w-6 text-[#0066CC]" />
                   <div>
                     <h4 className="font-semibold mb-1">Адрес офиса</h4>
-                    <p className="text-muted-foreground">115093, г. Москва, ул. Промышленная, д. 25, стр. 1</p>
+                    <p className="text-muted-foreground">Московская область, г. Щелково, ул. Советская 1/2, к2</p>
                   </div>
                 </div>
               </CardContent>
