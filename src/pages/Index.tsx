@@ -839,12 +839,12 @@ const Index = () => {
             <Card className="overflow-hidden">
               <div className="aspect-video w-full">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3Acf40f2ce4a7dcdd0e77f1c02c2d2d8ab8c9e0f7e7b9a8b8a8a8a8a8a8a8a8a8a&amp;source=constructor&amp;ll=37.994800%2C55.918600&amp;z=16&amp;l=map&amp;pt=37.994800,55.918600,pm2rdm"
+                  src="https://yandex.ru/map-widget/v1/?ll=37.996287%2C55.918356&z=17&l=map&pt=37.996287,55.918356,pm2rdm&text=Московская%20область%2C%20г.%20Щелково%2C%20ул.%20Советская%201%2F2%2C%20к2"
                   width="100%"
                   height="100%"
                   frameBorder="0"
                   style={{ minHeight: '400px' }}
-                  title="Карта офиса ООО ЗСПА - г. Щелково, ул. Советская 1/2"
+                  title="Карта офиса ООО ЗСПА - г. Щелково, ул. Советская 1/2, к2"
                   className="border-0"
                 ></iframe>
               </div>
