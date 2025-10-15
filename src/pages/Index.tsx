@@ -864,7 +864,7 @@ const Index = () => {
 
       <footer className="bg-[#2C3E50] text-white py-12">
         <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Icon name="Factory" className="h-6 w-6" />
@@ -879,16 +879,6 @@ const Index = () => {
               <ul className="space-y-2 text-sm text-white/80">
                 <li><a href="#about" className="hover:text-white transition-colors">О нас</a></li>
                 <li><a href="#products" className="hover:text-white transition-colors">Продукция</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Услуги</a></li>
-                <li><a href="#projects" className="hover:text-white transition-colors">Проекты</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Информация</h4>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#news" className="hover:text-white transition-colors">Новости</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Сертификаты</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Документация</a></li>
                 <li><a href="#contacts" className="hover:text-white transition-colors">Контакты</a></li>
               </ul>
             </div>
